@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class goods {
+public class Goods {
 
     private int goods_id;
     private String goods_name;

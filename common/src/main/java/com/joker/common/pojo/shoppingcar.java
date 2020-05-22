@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class shoppingcar {
+public class Shoppingcar {
     private int shoppingcar_key;
     private int goods_id;
     private String user_name;

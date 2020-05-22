@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class person {
+public class Person {
 
     private int user_id;
     private String user_name;
     private String user_password;
-    private String user_money;
+    private Double user_money;
     private int user_lev;
     private String user_email;
     private String user_address;

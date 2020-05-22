@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class orderitem {
+public class Orderitem {
     private int orderitem_key;
     private String order_id;
     private int goods_id;

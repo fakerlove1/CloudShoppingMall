@@ -15,4 +15,8 @@ public class ResultData<T>{
     private String message;
     private int code;
     private T data;
+
+    public ResultData(int code,String message){
+        this(message,code,null);
+    }
 }
