@@ -1,4 +1,4 @@
-package com.joker.person_provider_8081.controller;
+package com.joker.personprovider8081.controller;
 
 
 import com.joker.common.pojo.ResultData;

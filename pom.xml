@@ -19,7 +19,7 @@
         <module>eureka_9090</module>
         <module>feign</module>
         <module>ribbon</module>
-<!--        <module>person_provider_8081</module>-->
+        <module>person_provider_8081</module>
     </modules>
 
     <properties>

@@ -1,4 +1,4 @@
-package com.joker.person_provider_8081.mapper;
+package com.joker.personprovider8081.mapper;
 
 import com.joker.common.pojo.Person;
 import org.apache.ibatis.annotations.Mapper;

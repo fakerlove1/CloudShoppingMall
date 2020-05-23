@@ -1,4 +1,4 @@
-package com.joker.person_provider_8081;
+package com.joker.personprovider8081;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
