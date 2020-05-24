@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.joker</groupId>
-    <artifactId>shoppingmall</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>shoppingmall</name>
-    <description>Demo project for Spring Boot</description>
 
-<!--    有三个模块 -->
+    <groupId>org.example</groupId>
+    <artifactId>shopping</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>eureka_9090</module>
-        <module>feign</module>
-        <module>ribbon</module>
-        <module>person_provider_8081</module>
+        <module>person8081</module>
+        <module>common</module>
+        <module>goods9090</module>
     </modules>
 
     <properties>
+        <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.12</lombok.version>
         <log4j.version>1.2.17</log4j.version>
         <mysql.version>8.0.18</mysql.version>
         <druid.version>1.1.22</druid.version>
     </properties>
 
+
     <dependencyManagement>
         <dependencies>
-<!--            cloud 依赖-->
+            <!--            cloud 依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -41,7 +42,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-<!-- 这个是 spring boot 依赖-->
+            <!-- 这个是 spring boot 依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -51,14 +52,14 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.3.0.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-<!--mybatis -->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
+<!--                <version>2.3.0.RELEASE</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+            <!--mybatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -81,13 +82,7 @@
 
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
+
 
 </project>
