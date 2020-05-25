@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodsprovider.mapper.ShoppingCarMapper">
+
+    <!--    -->
+    <resultMap id="ShoppingMap" type="common.pojo.Shoppingcar">
+
+        <id column="shoppingcar_key" property="shoppingcar_key" jdbcType="INTEGER"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goods_id"/>
+        <result column="user_id" jdbcType="INTEGER" property="user_id"/>
+        <result column="shopping_goodsnumber" jdbcType="INTEGER" property="shopping_goodsnumber"/>
+        <result column="shopping_needmoney" jdbcType="DOUBLE" property="shopping_needmoney"/>
+
+    </resultMap>
+
+
+
+    <select id="SelectShoppingCar" resultMap="ShoppingMap">
+      select * from shoppingcar
+      where user_id=#{user_id}
+    </select>
+
+    <insert id="AddShoppingCar" parameterType="common.pojo.Shoppingcar">
+    insert into
+    shoppingcar(goods_id, user_id, shopping_goodsnumber, shopping_needmoney)
+    values(#{goods_id}, #{user_id}, #{shopping_goodsnumber}, #{shopping_needmoney}) ;
+    </insert>
+
+    <update id="ModifyShoppingCar" parameterType="common.pojo.Shoppingcar">
+
+        update goods
+        <set>
+            <if test="goods_id!=null and goods_id=''">
+                goods_id=#{goods_id}
+            </if>
+            <if test="user_id !=null and user_id=''">
+                user_id=#{user_id}
+            </if>
+
+            <if test="shopping_goodsnumber!=null and shopping_goodsnumber=''">
+                shopping_goodsnumber=#{shopping_goodsnumber}
+            </if>
+            <if test="shopping_needmoney!=null and shopping_needmoney=''">
+                shopping_needmoney=#{shopping_needmoney}
+
+            </if>
+        </set>
+        where shoppingcar_key=#{shoppingcar_key}
+    </update>
+
+   <delete id="DeleteShoppingCar">
+       delete from shoppingcar where shoppingcar_key=#{shoppingcar_key}
+   </delete>
+
+</mapper>
