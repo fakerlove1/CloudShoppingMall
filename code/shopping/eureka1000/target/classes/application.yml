@@ -1,0 +1,12 @@
+server:
+  port: 1000
+
+eureka:
+  client:
+    register-with-eureka: false #是否向eureka注册自己，默认为true。当前的工程为服务端，不需要像注册中心注册自己，所以设置为false
+    fetch-registry: false #是否检索服务，默认为true。当前工程为服务端，只需要维护，不需要检索服务，所以设置为false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka #与Eureka交互的地址
+
+  instance:
+    hostname: localhost #eureka服务端示例名称

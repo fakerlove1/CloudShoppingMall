@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodsprovider.mapper.OrderAllMapper">
+
+    <!--    -->
+    <resultMap id="OrderMap" type="common.pojo.Impl.OrderAll">
+
+        <id column="order_key" property="order_key" jdbcType="INTEGER"/>
+        <result column="order_id" jdbcType="VARCHAR" property="order_id"/>
+        <result column="user_id" jdbcType="INTEGER" property="user_id"/>
+        <result column="order_time" jdbcType="TIMESTAMP" property="order_time"/>
+        <result column="all_money" jdbcType="DOUBLE" property="all_money"/>
+
+        <!--        这里是 商品中店家的信息 -->
+        <collection property="orderItems" ofType="common.pojo.OrderItem">
+            <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+            <id column="orderitem_key" property="orderitem_key" jdbcType="INTEGER"/>
+            <result column="order_id" jdbcType="VARCHAR" property="order_id"/>
+            <result column="goods_id" jdbcType="INTEGER" property="goods_id"/>
+            <result column="seller_id" jdbcType="INTEGER" property="seller_id"/>
+            <result column="buy_number" jdbcType="INTEGER" property="buy_number"/>
+            <result column="item_money" jdbcType="DOUBLE" property="item_money"/>
+            <association property="goods" javaType="common.pojo.Goods">
+                <id column="goods_id" property="goods_id" jdbcType="INTEGER"/>
+                <result column="goods_type" jdbcType="INTEGER" property="goods_type"/>
+                <result column="surplus" jdbcType="INTEGER" property="surplus"/>
+                <result column="sale" jdbcType="INTEGER" property="sale"/>
+                <result column="goods_name" jdbcType="VARCHAR" property="goods_name"/>
+                <result column="priviewInformation" jdbcType="VARCHAR" property="priviewInformation"/>
+                <result column="banner_img" jdbcType="VARCHAR" property="banner_img"/>
+                <result column="seller_id" jdbcType="INTEGER" property="seller_id"/>
+                <result column="original_price" jdbcType="DOUBLE" property="original_price"/>
+                <result column="sell_price" jdbcType="DOUBLE" property="sell_price"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <resultMap id="OrderItem" type="common.pojo.OrderItem">
+        <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+        <id column="orderitem_key" property="orderitem_key" jdbcType="INTEGER"/>
+        <result column="order_id" jdbcType="VARCHAR" property="order_id"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goods_id"/>
+        <result column="seller_id" jdbcType="INTEGER" property="seller_id"/>
+        <result column="buy_number" jdbcType="INTEGER" property="buy_number"/>
+        <result column="item_money" jdbcType="DOUBLE" property="item_money"/>
+        <association property="goods" javaType="common.pojo.Goods">
+            <id column="goods_id" property="goods_id" jdbcType="INTEGER"/>
+            <result column="goods_type" jdbcType="INTEGER" property="goods_type"/>
+            <result column="surplus" jdbcType="INTEGER" property="surplus"/>
+            <result column="sale" jdbcType="INTEGER" property="sale"/>
+            <result column="goods_name" jdbcType="VARCHAR" property="goods_name"/>
+            <result column="priviewInformation" jdbcType="VARCHAR" property="priviewInformation"/>
+            <result column="banner_img" jdbcType="VARCHAR" property="banner_img"/>
+            <result column="seller_id" jdbcType="INTEGER" property="seller_id"/>
+            <result column="original_price" jdbcType="DOUBLE" property="original_price"/>
+            <result column="sell_price" jdbcType="DOUBLE" property="sell_price"/>
+        </association>
+
+
+    </resultMap>
+
+
+    <resultMap id="OrderItems" type="common.pojo.Impl.OrderItems">
+        <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+        <id column="orderitem_key" property="orderitem_key" jdbcType="INTEGER"/>
+        <result column="order_id" jdbcType="VARCHAR" property="order_id"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goods_id"/>
+        <result column="seller_id" jdbcType="INTEGER" property="seller_id"/>
+        <result column="buy_number" jdbcType="INTEGER" property="buy_number"/>
+        <result column="item_money" jdbcType="DOUBLE" property="item_money"/>
+
+        <association property="order" javaType="common.pojo.Order">
+            <id column="order_key" property="order_key" jdbcType="INTEGER"/>
+            <result column="order_id" jdbcType="VARCHAR" property="order_id"/>
+            <result column="user_id" jdbcType="INTEGER" property="user_id"/>
+            <result column="order_time" jdbcType="TIMESTAMP" property="order_time"/>
+            <result column="all_money" jdbcType="DOUBLE" property="all_money"/>
+        </association>
+
+        <association property="person" javaType="common.pojo.Person">
+            <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+            <id column="user_id" property="user_id" jdbcType="INTEGER"/>
+            <result column="user_lev" jdbcType="INTEGER" property="user_lev"/>
+            <result column="user_name" jdbcType="VARCHAR" property="user_name"/>
+            <result column="user_gender" jdbcType="INTEGER" property="user_gender"/>
+<!--            <result column="user_password" jdbcType="VARCHAR" property="user_password"/>-->
+            <result column="user_email" jdbcType="VARCHAR" property="user_email"/>
+            <result column="user_address" jdbcType="VARCHAR" property="user_address"/>
+            <result column="user_banner_img" jdbcType="VARCHAR" property="user_banner_img"/>
+            <result column="user_telephone" jdbcType="VARCHAR" property="user_telephone"/>
+            <result column="user_introduce" jdbcType="VARCHAR" property="user_introduce"/>
+<!--            <result column="user_password" jdbcType="VARCHAR" property="user_password"/>-->
+            <result column="user_money" property="user_money" jdbcType="DOUBLE"/>
+        </association>
+
+    </resultMap>
+
+
+    <select id="FindOrder" parameterType="int" resultMap="OrderMap">
+select * from (orders left join orderitem on orders.order_id=orderitem.order_id)
+left join goods on goods.goods_id= orderitem.goods_id
+where orders.user_id=#{user_id};
+    </select>
+
+    <insert id="AddOrder" parameterType="common.pojo.Order">
+insert into orders(order_id,user_id,order_time,all_money)
+ values(#{order_id},#{user_id},#{order_time},#{all_money})
+    </insert>
+
+    <insert id="AddOrderItem" parameterType="common.pojo.OrderItem">
+insert into orderitem( order_id, goods_id, seller_id, buy_number, item_money)
+ values(#{order_id},#{goods_id},#{ seller_id},#{buy_number},#{item_money})
+    </insert>
+
+    <select id="FindOrderItem" resultType="common.pojo.OrderItem">
+select * from orderitem
+left join goods on goods.goods_id= orderitem.goods_id
+where orderitem.seller_id=#{seller_id};
+    </select>
+
+    <select id="FindOrderItems" resultMap="OrderItems">
+select * from (orderitem left join orders on orderitem.order_id=orders.order_id)
+left join person on orders.user_id=person.user_id
+where orderitem.seller_id=#{seller_id};
+    </select>
+
+
+</mapper>

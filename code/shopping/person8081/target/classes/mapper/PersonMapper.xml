@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="personprovider8081.mapper.PersonMapper">
+
+    <!--    -->
+    <resultMap id="PersonMap" type="common.pojo.Person">
+        <id column="user_id" property="user_id" jdbcType="INTEGER"/>
+        <result column="user_lev" jdbcType="INTEGER" property="user_lev"/>
+        <result column="user_gender" jdbcType="INTEGER" property="user_gender"/>
+        <result column="user_password" jdbcType="VARCHAR" property="user_password"/>
+        <result column="user_email" jdbcType="VARCHAR" property="user_email"/>
+        <result column="user_address" jdbcType="VARCHAR" property="user_address"/>
+        <result column="user_banner_img" jdbcType="VARCHAR" property="user_banner_img"/>
+        <result column="user_telephone" jdbcType="VARCHAR" property="user_telephone"/>
+        <result column="user_introduce" jdbcType="VARCHAR" property="user_introduce"/>
+        <result column="user_password" jdbcType="VARCHAR" property="user_password"/>
+        <result column="user_money" property="user_money" jdbcType="DOUBLE"/>
+
+    </resultMap>
+
+    <select id="CheckLogin" resultType="int">
+        SELECT count(*) FROM person
+        where user_id=#{user_id} and user_password=#{user_password}
+    </select>
+
+    <select id="FindPersonById" resultMap="PersonMap">
+        SELECT * FROM person
+        where user_id=#{user_id}
+    </select>
+
+    <select id="FindPersonAll" resultMap="PersonMap" parameterType="int">
+        select * from person
+        where user_lev=#{user_lev}
+    </select>
+
+
+    <insert id="AddPerson" parameterType="Person">
+       insert into person(user_name,user_password,user_money,user_lev,user_gender)
+       values(#{user_name},#{user_password},#{user_money},#{user_lev},#{user_gender});
+
+    </insert>
+    <select id="findid" resultType="int">
+           SELECT @@IDENTITY
+    </select>
+
+    <update id="ModifyPerson" parameterType="Person">
+        update person
+        <set>
+            <if test="user_name!=null and user_name!=''">
+                user_name=#{user_name},
+            </if>
+
+            <if test="user_money!=null and user_money!=''">
+                user_money=#{user_money},
+            </if>
+            <if test="user_email!=null and user_email!=''">
+                user_email=#{user_email},
+            </if>
+            <if test="user_address!=null and user_address!=''">
+                user_address=#{user_address},
+            </if>
+            <if test="user_banner_img!=null and user_banner_img!=''">
+                user_banner_img=#{user_banner_img},
+            </if>
+            <if test="user_telephone!=null and user_telephone!=''">
+                user_telephone=#{user_telephone},
+            </if>
+
+            <if test="user_introduce!=null and user_introduce!=''">
+                user_introduce=#{user_introduce},
+            </if>
+            <if test="user_gender!=null and user_gender!=''">
+                user_gender=#{user_gender},
+            </if>
+
+        </set>
+        where user_id=#{user_id}
+    </update>
+
+    <update id="AddMoney">
+       update person set user_money=#{user_money} where user_id=#{user_id}
+    </update>
+
+    <delete id="DeletePerson" parameterType="int">
+        delete from person where user_id=#{user_id}
+    </delete>
+
+</mapper>
