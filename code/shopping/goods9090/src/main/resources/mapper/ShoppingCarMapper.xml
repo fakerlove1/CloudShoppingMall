@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="goodsprovider.mapper.ShoppingCarMapper">
+<mapper namespace="com.ak.mapper.ShoppingCarMapper">
 
     <!--    -->
-    <resultMap id="ShoppingMap" type="common.pojo.Shoppingcar">
+    <resultMap id="ShoppingMap" type="com.ak.Shoppingcar">
 
         <id column="shoppingcar_key" property="shoppingcar_key" jdbcType="INTEGER"/>
         <result column="goods_id" jdbcType="INTEGER" property="goods_id"/>
@@ -12,7 +12,7 @@
         <result column="shopping_goodsnumber" jdbcType="INTEGER" property="shopping_goodsnumber"/>
         <result column="shopping_needmoney" jdbcType="DOUBLE" property="shopping_needmoney"/>
 
-        <association property="goods" javaType="common.pojo.Goods">
+        <association property="goods" javaType="com.ak.Goods">
             <id column="goods_id" property="goods_id" jdbcType="INTEGER"/>
             <result column="goods_type" jdbcType="INTEGER" property="goods_type"/>
             <result column="surplus" jdbcType="INTEGER" property="surplus"/>
@@ -37,13 +37,13 @@
       where shoppingcar.user_id=#{user_id} and shoppingcar.goods_id=#{goods_id};
     </select>
 
-    <insert id="AddShoppingCar" parameterType="common.pojo.Shoppingcar">
+    <insert id="AddShoppingCar" parameterType="com.ak.Shoppingcar">
     insert into
     shoppingcar(goods_id, user_id, shopping_goodsnumber, shopping_needmoney)
     values(#{goods_id}, #{user_id}, #{shopping_goodsnumber}, #{shopping_needmoney}) ;
     </insert>
 
-    <update id="ModifyShoppingCar" parameterType="common.pojo.Shoppingcar">
+    <update id="ModifyShoppingCar" parameterType="com.ak.Shoppingcar">
         update shoppingcar
         <set>
             <if test="goods_id!=null and goods_id!=''">

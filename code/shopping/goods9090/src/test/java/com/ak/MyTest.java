@@ -1,19 +1,20 @@
 package com.ak;
 
-import goodsprovider.goods9090Application;
-import goodsprovider.mapper.GoodMapper;
-import goodsprovider.mapper.OrderAllMapper;
-
-import goodsprovider.mapper.PersonMapper;
-import goodsprovider.mapper.ShoppingCarMapper;
+import com.ak.Impl.OrderAll;
+import com.ak.mapper.GoodMapper;
+import com.ak.mapper.OrderAllMapper;
+import com.ak.mapper.PersonMapper;
+import com.ak.mapper.ShoppingCarMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = goods9090Application.class)
+@SpringBootTest(classes = Goods9090Application.class)
 public class MyTest {
 
     @Autowired
@@ -30,11 +31,11 @@ public class MyTest {
 
     @Test
     public void kk(){
-//        List<OrderAll> list=orderAllMapper.FindOrder(1);
-//
-//        for(OrderAll orderAll:list){
-//            System.out.println(orderAll);
-//        }
+        List<OrderAll> list=orderAllMapper.FindOrder(1);
+
+        for(OrderAll orderAll:list){
+            System.out.println(orderAll);
+        }
 
 //        Order order=new Order();
 //        order.setAll_money(100.0);

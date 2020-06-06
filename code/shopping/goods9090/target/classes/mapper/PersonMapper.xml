@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="goodsprovider.mapper.PersonMapper">
+<mapper namespace="com.ak.mapper.PersonMapper">
 
     <!--    -->
-    <resultMap id="PersonMap" type="common.pojo.Person">
+    <resultMap id="PersonMap" type="com.ak.Person">
         <id column="user_id" property="user_id" jdbcType="INTEGER"/>
         <result column="user_lev" jdbcType="INTEGER" property="user_lev"/>
         <result column="user_gender" jdbcType="INTEGER" property="user_gender"/>

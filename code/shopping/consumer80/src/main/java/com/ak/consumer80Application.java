@@ -1,14 +1,17 @@
 package com.ak;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableEurekaServer
+@EnableEurekaClient  // 客户端
+@EnableFeignClients  //  Feign 的支持
 @SpringBootApplication
-public class consumer80Application {
+public class Consumer80Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(consumer80Application.class, args);
+        SpringApplication.run(Consumer80Application.class, args);
     }
 }

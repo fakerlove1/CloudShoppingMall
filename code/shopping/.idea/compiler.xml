@@ -7,21 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="person8081" />
-        <module name="common" />
         <module name="goods9090" />
-        <module name="eureka1000" />
+        <module name="common" />
+        <module name="person8081" />
         <module name="consumer80" />
+        <module name="eureka1000" />
+        <module name="Goods9091" />
+        <module name="Person8083" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="common" options="-parameters" />
-      <module name="consumer80" options="-parameters" />
-      <module name="eureka1000" options="-parameters" />
-      <module name="goods9090" options="-parameters" />
-      <module name="person8081" options="-parameters" />
-    </option>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>

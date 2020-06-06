@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="goodsprovider.mapper.GoodMapper">
+<mapper namespace="com.ak.mapper.GoodMapper">
 
     <!--    -->
-    <resultMap id="GoodMap" type="common.pojo.Impl.GoodsPerson">
+    <resultMap id="GoodMap" type="com.ak.Impl.GoodsPerson">
 
         <id column="goods_id" property="goods_id" jdbcType="INTEGER"/>
 
@@ -21,7 +21,7 @@
         <result column="sell_price" jdbcType="DOUBLE" property="sell_price"/>
 
         <!--        这里是 商品中店家的信息 -->
-        <association property="person" javaType="common.pojo.Person">
+        <association property="person" javaType="com.ak.Person">
             <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
             <id column="user_id" property="user_id" jdbcType="INTEGER"/>
             <result column="user_lev" jdbcType="INTEGER" property="user_lev"/>
@@ -53,12 +53,12 @@
        select * from goods left join person on seller_id=user_id where goods_id=#{goods_id}
     </select>
 
-    <select id="FindGoodsBySellId" resultType="common.pojo.Goods">
+    <select id="FindGoodsBySellId" resultType="com.ak.Goods">
 select * from goods where seller_id=#{seller_id};
     </select>
 
 
-    <insert id="AddGoods" parameterType="common.pojo.Goods">
+    <insert id="AddGoods" parameterType="com.ak.Goods">
     insert into
     goods(
        goods_name,
@@ -82,7 +82,7 @@ select * from goods where seller_id=#{seller_id};
       #{ sale});
     </insert>
 
-    <update id="ModifyGoods" parameterType="common.pojo.Goods">
+    <update id="ModifyGoods" parameterType="com.ak.Goods">
 
         update goods
         <set>
@@ -120,7 +120,7 @@ select * from goods where seller_id=#{seller_id};
         where goods_id=#{goods_id}
     </update>
 
-    <select id="FindGoodsById" parameterType="int" resultType="common.pojo.Goods">
+    <select id="FindGoodsById" parameterType="int" resultType="com.ak.Goods">
         select * from goods where goods_id=#{goods_id};
     </select>
 

@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: provider_goods
+    name: Goods
 #    配置 mybatis
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -18,4 +18,12 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
   #将日志文件生成到系统盘路径
-  type-aliases-package: common.pojo
+  type-aliases-package: com.ak
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka  #eureka注册地址
+  instance:
+    prefer-ip-address: true #是否显示服务器的ip地址
+    instance-id: goods9090 #客户端实例名称
